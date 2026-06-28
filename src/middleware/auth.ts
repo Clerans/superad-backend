@@ -9,7 +9,8 @@ export const requireAuth = (req: AuthRequest, res: Response, next: NextFunction)
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET!) as { adminId: string };
+    const jwtSecret = process.env.JWT_SECRET || 'super-secret-key-change-this';
+    const payload = jwt.verify(token, jwtSecret) as { adminId: string };
     req.adminId = payload.adminId;
     next();
   } catch {
