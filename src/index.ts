@@ -15,12 +15,14 @@ const PORT = process.env.PORT || 3001;
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://superad-frontend.vercel.app"
+        "https://superad-frontend.vercel.app",
+        "https://superad-frontend-git-main-clerans-projects.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
